@@ -1,0 +1,147 @@
+/* ----------------------------
+
+Primary style
+
+---------------------------- */
+
+/* ::before is to set context/style before a tag */
+/* ::after is to set context/style after a tag */
+*, *::after, *::before {
+  /* box-sizing alters the DOM box-model. content-box is the standard. */
+  /* content-box means that the height and width do not include the border, padding, or margins */
+  box-sizing: border-box; /* border-box means that the height and width include the border and padding, but not the margin */
+}
+
+html {
+  font-size: 52.5%;
+}
+
+body {
+  /* em: relative to the font-size of its immediate parent */
+  /* rem: relative to the root HTML font-size */
+  /* rem is less easier to manipulate, so typically use em */
+  font-size: 1.1rem;
+  font-family: sans-serif;
+  color: #F2F3AE;
+  background: #020122;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ----------------------------
+
+Hover animations
+
+---------------------------- */
+
+section {
+  width: 100%;
+  height: 100vh; /* Because we want it to be in the middle of the page vertically */
+  display: table; /* Enables better alignment control */
+}
+
+section .center {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.trigger {
+  position: relative;
+  background-color: #F95B1F;
+  display: inline-block; /* Enables ability to give value for the sizes */
+  width: 200px;
+  height: 60px;
+  border-radius: 50em;
+  /* x-axis: 0, y-axis: 2px, blur: 20px, background: 0,0,0,.7 (opacity) */
+  /* inset: sets it to have the radius on the inside of the box */
+  /* 0 for blur creates a crisp line on top */
+  box-shadow: 0 2px 20px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,0.2);
+  color: white;
+}
+
+span, em, i {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+}
+
+span {
+  overflow: hidden; /* Any content that goes outside the view isn't visible */ 
+}
+
+em, i {
+  transition: top 0.3s;
+}
+
+em {
+  font-style: normal;
+  top: 0px;
+  line-height: 60px; /* Same as the height of the box. Since we have table-cell + center vertical align, want these to be the same height */
+}
+
+i {
+  top: 100%; /* Hides it under the button due to overflow-hidden of span */
+  background: url("icon-download.svg") no-repeat center center;
+}
+
+.trigger:hover em {
+  top: -100%;
+}
+
+.trigger:hover i {
+  top: 0;
+}
+
+/* ----------------------------
+
+Tooltip
+
+---------------------------- */
+
+.trigger::before, .trigger::after {
+  position: absolute;
+  opacity: 0; /* Hidden originally */
+  /* Visibility determines if it's in the flow of the DOM or not */
+  visibility: hidden; /* If this isn't there, can hover over the area where the tooltip is and it'll show it */
+  transition: all 0.3s; /* opacity, visibility, bottom */
+}
+
+.trigger::before {
+  content: 'File Size: 50MB';
+  width: 140px;
+  height: 60px;
+  line-height: 60px; /* Same as height, this centers it vertically */
+  background: #FC9E4F;
+  border-radius: 0.25em;
+  bottom: 90px; /* Needs to be higher than the button size */
+  left: calc(50% - 70px); /* Calc mixes two units. 70px is half the width of the element */
+}
+
+/* The triangle that appears under the box */
+.trigger::after {
+  content: ''; /* Need content for it to show up, even if blank */
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-top-color: #FC9E4F;
+  left: calc(50% - 10px); /* Half the width of the triangle */
+  bottom: 70px;
+}
+
+.trigger:hover::before,
+.trigger:hover::after {
+  opacity: 1.0;
+  visibility: visible;
+}
+
+.trigger:hover::before {
+  bottom: 80px;
+}
+
+.trigger:hover::after {
+  bottom: 60px;
+}

@@ -1,0 +1,32 @@
+span {
+  display: block;
+  height: 100px;
+  width: 100px;
+  margin: 4em auto;
+  background: green;
+  /* Modern CSS allows for combining several related CSS properties into one */
+  /* Such as background color + repeat + image */
+  /* For transition, this is equal */
+  /* transition: background 0.5s 1s ease; */
+  /* To this */
+  /* transition-property: background; */ /* W3 website lists what properties can be transitioned. It's a lot. */
+  /* transition-duration: 0.5s; */
+  /* transition-delay: 1s; */
+  /* transition-timing-function: ease; */ /* This one is the most powerful. There are lots of options to change the feel of the app */
+  
+  /* To transition multiple properties */
+  /* transition: background 0.5s, width 0.2s; */
+  /* Transition all */
+  transition: all 0.5s;
+  
+  /* When done on the main element, this is what happens for any event */
+  /* Ex: On hover out, this will be called */
+}
+
+span:hover {
+  width: 300px;
+  background: red;
+  
+  /* When done in a special event, it overrides the main element transition */
+  transition: all 2s;
+}
