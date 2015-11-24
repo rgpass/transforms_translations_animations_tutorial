@@ -1,0 +1,46 @@
+/* ----------------------------
+
+Main component
+
+---------------------------- */
+
+div {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  background: #444;
+  border-radius: 50%;
+  left: calc(50% - 60px);
+  bottom: 30%;
+  animation: move-down 3s;
+  /* Check out http://cubic-bezier.com/ to see animation timing functions */
+  /* animation-timing-function: ease; */ /* default is ease */
+  /* Note these values go inside the keyframes */
+
+  /* Can do timing functions on transitions as well */
+  transition: transform 0.6s;
+
+  /* Can also use a value of steps(3) to have interate to the end value */
+  transition-timing-function: linear;
+}
+
+/*
+@keyframes move-down {
+  0% {
+    animation-timing-function: cubic-bezier(.99,.01,1,.23);
+    bottom 30%;
+  }
+
+  50% {
+    bottom: 80%;
+  }
+
+  100% {
+    bottom: 30%;
+  }
+}
+*/
+
+div:hover {
+  transform: scale(3);
+}
